@@ -1,0 +1,17 @@
+[
+  {
+    "name": "siomay",
+    "stock": 2,
+    "harga": 10000
+  },
+  {
+    "name": "bakso",
+    "stock": 2,
+    "harga": 13000
+  },
+  {
+    "name": "dimsum",
+    "stock": 2,
+    "harga": 15000
+  }
+]
