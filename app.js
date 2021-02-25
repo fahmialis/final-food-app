@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const app = express()
 const router = require('./router')
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 app.set('trust proxy', 1)
 app.use(session({
@@ -17,6 +17,6 @@ app.use(express.urlencoded({extended : true}))
 
 app.use(router)
 
-app.listen(port, () => {
-  console.log(`listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`listening at http://localhost:${PORT}`)
 })

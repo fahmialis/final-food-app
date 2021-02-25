@@ -71,9 +71,11 @@ class CustomerController{
                     // console.log(req.session);
                     res.redirect('/')
                 } else {
-
                     res.render('failedLogin')
                 }
+            })
+            .catch(err =>{
+                res.send(err)
             })
     }
 
@@ -84,13 +86,15 @@ class CustomerController{
             name : req.session.user.name
         }
         Menu.findAll()
-
             .then(data =>{
             // res.send(data)
             let menuList = data
-            console.log(menuList, 'menu list');
+            // console.log(menuList, 'menu list');
             res.render('menuList', {menuList, customerData})
-        })
+            })
+            .catch(err =>{
+                res.send(err)
+            })
     }
 
     static buyFood(req, res){
@@ -100,14 +104,14 @@ class CustomerController{
             CustomerId : +userId,
             MenuId : +req.body.MenuId
         }
-        console.log(data);
+        // console.log(data);
 
         CustomerMenu.create(data)
             .then(data =>{
                 res.redirect('/')
             })
             .catch(err =>{
-                console.log(err);
+                // console.log(err);
                 res.send(err)
             })
     }
@@ -143,6 +147,7 @@ class CustomerController{
         include : Menu
         })
         .then(data =>{
+            // res.send(data)
             res.render('foodHistory', {data})
         })
         .catch(err =>{

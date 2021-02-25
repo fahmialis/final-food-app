@@ -3,7 +3,7 @@ const userLogged = (req, res, next) =>{
     if(req.session.user){
         next()
     } else {
-        res.send('You must login first')
+        res.render('loginFirst')
     }
 }
 
@@ -12,7 +12,7 @@ const testLogged = (req, res, next) =>{
     if(req.session.user && req.session.user.name == 'test'){
         next()
     } else {
-        res.send('You are not allowed')
+        res.render('notAllowed')
     }
 
 }
