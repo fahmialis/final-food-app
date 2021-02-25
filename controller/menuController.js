@@ -52,6 +52,8 @@ class MenuController{
 
   static postBuyFood(req,res){
     // customerMenu.create(menuId, cusId)
+    // kuantiti menu dan create btable baru ke table conujcution
+
   }
 
   static removeMenu(req,res){
@@ -67,6 +69,7 @@ class MenuController{
     // .catch(err => {
     //   res.send(err)
     // })
+    // yang di delete yang ngapus order
   }
 }
 
