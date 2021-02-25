@@ -1,5 +1,5 @@
 const { comparePassword } = require('../helper/bycriptjs')
-const {Customer} = require('../models')
+const {Customer, Menu, CustomerMenu} = require('../models')
 
 class CustomerController{
 
@@ -19,7 +19,6 @@ class CustomerController{
     }
 
     static register(req,res){
-        // res.send('ini mau register')
         res.render('registerPage')
     }
 
@@ -36,7 +35,8 @@ class CustomerController{
 
         Customer.create(data)
             .then(data =>{
-                res.redirect('/')
+                // res.redirect('/')
+                res.render('mainPage')
             })
             .catch(err =>{
                 // res.send(err)
@@ -77,6 +77,41 @@ class CustomerController{
             })
     }
 
+    static showMenu(req, res){
+        // console.log(req.session.user.id, req.session.user.name );
+        let customerData = {
+            id : req.session.user.id,
+            name : req.session.user.name
+        }
+        Menu.findAll()
+
+            .then(data =>{
+            // res.send(data)
+            let menuList = data
+            console.log(menuList, 'menu list');
+            res.render('menuList', {menuList, customerData})
+        })
+    }
+
+    static buyFood(req, res){
+        // console.log(req.body);
+        let userId = +req.params.id
+        let data = {
+            CustomerId : +userId,
+            MenuId : +req.body.MenuId
+        }
+        console.log(data);
+
+        CustomerMenu.create(data)
+            .then(data =>{
+                res.redirect('/')
+            })
+            .catch(err =>{
+                console.log(err);
+                res.send(err)
+            })
+    }
+
     static delete (req, res){
         let id = +req.params.id
         Customer.destroy({
@@ -97,11 +132,24 @@ class CustomerController{
             if(err){
                 res.send(err)
             }
+            res.redirect('/')
         })
     }
 
+    static foodHistory(req,res){
+        let id = +req.params.id
 
+        Customer.findByPk(id, {
+        include : Menu
+        })
+        .then(data =>{
+            res.render('foodHistory', {data})
+        })
+        .catch(err =>{
+            res.send(err)
+        })
 
+    }
 }
 
 module.exports = CustomerController

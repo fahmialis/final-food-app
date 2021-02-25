@@ -1,76 +1,54 @@
-const { Customer, Menu, CustomerMenu } = require('../models');
-const customermenu = require('../models/customermenu');
+const { Customer, Menu,} = require('../models');
 
 class MenuController{
-
-  static findAllMenu(req,res){
+  static show(req,res){
     Menu.findAll({
-      include: Customer
+      order : [['id', 'ASC']]
     })
-    .then(menu => {
-      res.render('menu', {menu})
-    })
-    .catch(err => {
-      res.send(err)
-    })
-  }
+      .then(data =>{
+        // res.send(data)
+        res.render('menu', {data})
+      })
 
-  static getAddMenu(req,res){
-    Menu.findAll({
-      include: Customer
-    })
-    .then(menu => {
-      res.render('buyFood', {menu})
-    })
-    .catch(err => {
-      res.send(err)
-    })
-  }
-  
-  static getCustomerMenu(req,res){
-    //jalanin edit
-    //jalanin nambah ke customerMenu
-    let id = req.params.id
-    Menu.findByPk(id)
-    //findbypk.
-    //menu
-    .then(data => {
-      res.send(data)
-      //customerMenu.findAll()
-      //cutomerMenu.create(id)
-      // stock = stock - 1
-      // menu.save()
-      res.render('buyFood', {data})
-    })
-    //.then(data => {})
-    
-    //res.render
-    .catch(err => {
-      res.send(err)
-    })
-  }
-
-  static postBuyFood(req,res){
-    // customerMenu.create(menuId, cusId)
-    // kuantiti menu dan create btable baru ke table conujcution
 
   }
+  static create(req,res){
+    res.render('addNewMenu')
+  }
 
-  static removeMenu(req,res){
-    let id = req.params.id
-    // Movie.destroy({
-    //   where: {
-    //     id:id
-    //   }
-    // })
-    // .then(data => {
-    //   res.redirect('/menu/add')
-    // })
-    // .catch(err => {
-    //   res.send(err)
-    // })
-    // yang di delete yang ngapus order
+  static store(req,res){
+    // console.log(req.body)
+    let data = {
+      name : req.body.name,
+      stock : +req.body.stock,
+      harga : +req.body.harga,
+  }
+      Menu.create(data)
+      .then(data =>{
+          res.redirect('/menu')
+      })
+      .catch(err =>{
+          console.log(err);
+      })
+  }
+
+  static showCustomer(req, res){
+    let id = +req.params.id
+
+    Menu.findByPk(id, {
+        include : Customer
+    })
+        .then(data =>{
+            // console.log(data);
+            // res.send(data)
+            res.render('showCustomerBought', {data})
+        })
+        .catch(err =>{
+            res.send(err)
+        })
+
   }
 }
+
 
 module.exports = MenuController
