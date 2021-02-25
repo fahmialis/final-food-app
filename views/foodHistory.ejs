@@ -1,0 +1,26 @@
+<html>
+    <%- include('./partials/header.ejs')%>
+    <h1>FOOD HISTORY</h1>
+    <h2>Username : <%= data.userName() %></h2>
+    <h2>Email : <%= data.email %></h2>
+
+    <table border="1px">
+        <tr>
+            <th>Food</th>
+            <th>Price</th>
+        </tr>
+        <% for ( let i = 0; i < data.Menus.length; i++) {%>
+        <tr>
+
+            <td>
+                <%= data.Menus[i].name %> 
+            </td>
+            <td>
+                <%= data.Menus[i].harga %> 
+            </td>
+
+        </tr>
+        <%}%>
+
+    </table>
+</html>

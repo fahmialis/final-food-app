@@ -1,0 +1,16 @@
+<html>
+    <%- include('./partials/header.ejs')%>
+    <h1>ADD MENU</h1>
+    <form action="/menu/store" method="post">
+        <h2>Name</h2>
+        <input type="text" name="name" placeholder="somay">
+        <h2>Stock</h2>
+        <input type="number" name="stock" placeholder="2">
+        <h2>Harga</h2>
+        <input type="number" name="harga" placeholder="10000">
+        <br><br>
+
+        <button type="submit">ADD</button>
+        <button><a href="/menu">CANCEL</a></button>
+    </form>
+</html>

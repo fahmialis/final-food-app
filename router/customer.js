@@ -9,14 +9,18 @@ router.post('/store', CustomerController.store)
 router.get('/login', CustomerController.login)
 router.post('/login', CustomerController.loggedIn)
 
-router.use(userLogged)
+// router.use(userLogged)
 router.get('/logout', CustomerController.logout)
 
-router.use(testLogged)
+router.get('/showMenu', CustomerController.showMenu)
+router.post('/buy/:id', CustomerController.buyFood)
+
+
+
+// router.use(testLogged)
 router.get('/list', CustomerController.showList)
 router.get('/delete/:id', CustomerController.delete)
-
-
+router.get('/foodBought/:id', CustomerController.foodHistory)
 
 
 

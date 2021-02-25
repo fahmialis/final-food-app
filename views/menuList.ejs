@@ -1,0 +1,22 @@
+<html>
+    <%- include('./partials/header.ejs')%>
+    <h1>MENU LIST</h1>
+    <table border="1px">
+        <tr>
+            <td>Name</td>
+            <td>Harga</td>
+
+        </tr>
+        <% for ( let i = 0; i < menuList.length; i++) {%>
+        <form action="/customer/buy/<%= customerData.id%>" method="post">
+            <tr>
+            <td><input type="radio" name="MenuId" value="<%= menuList[i].id %>"><%= menuList[i].name %></td>
+            <td><%= menuList[i].harga %></td>
+        </tr>
+        <% } %> 
+        <td><button type="submit">buy</button></td>
+        
+        </form> 
+    </table>
+</html>
+
