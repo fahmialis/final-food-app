@@ -16,9 +16,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Menu.init({
-    name: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    harga: DataTypes.INTEGER
+    name: {
+      type : DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args : true,
+          msg : ` Name cannot be empty`
+        }
+      }
+    }, 
+    stock: {
+      type : DataTypes.INTEGER,
+      validate: {
+        min: {
+          args : 1,
+          msg : `  Minimum stock is 1`
+        }
+      }
+    },
+    harga:  {
+      type : DataTypes.INTEGER,
+      validate: {
+        min: {
+          args : 1,
+          msg : `  Minimum harga is 1`
+        }
+      }
+    },
   }, {
     sequelize,
     modelName: 'Menu',
