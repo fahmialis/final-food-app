@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       return `${this.first_name}${this.last_name}`
     }
     static associate(models) {
-      // define association here
+      Customer.belongsToMany(models.Menu, {
+        through : models.CustomerMenu
+      })
     }
   };
   Customer.init({
