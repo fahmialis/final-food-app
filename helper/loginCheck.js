@@ -7,4 +7,13 @@ const userLogged = (req, res, next) =>{
     }
 }
 
-module.exports = userLogged
+
+const testLogged = (req, res, next) =>{
+    if(req.session.user && req.session.user.name == 'test'){
+        next()
+    } else {
+        res.send('You are not allowed')
+    }
+
+}
+module.exports = {userLogged, testLogged}

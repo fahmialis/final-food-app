@@ -53,15 +53,14 @@ class CustomerController{
     }
 
     static loggedIn(req, res){
-        console.log(req.body);
+        // console.log(req.body);
         Customer.findOne({
             where : {
                 email : req.body.email
             }
         })
             .then(user =>{
-                // req.session.id = user.id
-                console.log(req.session);
+                // console.log(req.session);
                 const correctPassword = comparePassword(req.body.password, user.password)
 
                 if(user && correctPassword){
@@ -69,9 +68,10 @@ class CustomerController{
                         id : user.id,
                         name : user.first_name
                     }
-                    console.log(req.session);
+                    // console.log(req.session);
                     res.redirect('/')
                 } else {
+
                     res.render('failedLogin')
                 }
             })
@@ -85,7 +85,7 @@ class CustomerController{
             }
         })
             .then(data =>{
-                res.redirect('/')
+                res.redirect('/customer/list')
             })
             .catch(err =>{
                 res.send(err)
