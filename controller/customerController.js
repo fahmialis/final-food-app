@@ -74,6 +74,9 @@ class CustomerController{
                     res.render('failedLogin')
                 }
             })
+            .catch(err =>{
+                res.send(err)
+            })
     }
 
     static showMenu(req, res){
