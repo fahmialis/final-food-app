@@ -17,6 +17,6 @@ app.use(express.urlencoded({extended : true}))
 
 app.use(router)
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`listening at http://localhost:${PORT}`)
 })
