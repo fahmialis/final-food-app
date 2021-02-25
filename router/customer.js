@@ -3,10 +3,6 @@ const router = express.Router()
 const CustomerController = require ('../controller/customerController')
 const {userLogged, testLogged }= require('../helper/loginCheck')
 
-
-
-
-
 router.get('/create', CustomerController.register)
 router.post('/store', CustomerController.store)
 
