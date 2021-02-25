@@ -13,5 +13,40 @@
     "name": "dimsum",
     "stock": 2,
     "harga": 15000
+  },
+  {
+    "name": "nasi goreng",
+    "stock": 2,
+    "harga": 10000
+  },
+  {
+    "name": "pecel lele",
+    "stock": 2,
+    "harga": 25000
+  },
+  {
+    "name": "donat",
+    "stock": 2,
+    "harga": 5000
+  },
+  {
+    "name": "sate",
+    "stock": 2,
+    "harga": 30000
+  },
+  {
+    "name": "soto",
+    "stock": 2,
+    "harga": 20000
+  },
+  {
+    "name": "ikan goreng",
+    "stock": 2,
+    "harga": 7000
+  },
+  {
+    "name": "telor",
+    "stock": 2,
+    "harga": 10000
   }
 ]
