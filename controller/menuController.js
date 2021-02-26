@@ -52,6 +52,51 @@ class MenuController{
         })
 
   }
+
+
+    static edit(req,res){
+
+      let id = +req.params.id
+
+      Menu.findByPk(id)
+          .then(data =>{
+            // res.send(data)
+              res.render('menuEdit', {data})
+          })
+          .catch(err =>{
+              console.log(err);
+          })
+  }
+
+
+    static update(req,res){
+    let id = +req.params.id
+    console.log(req.body);
+    
+    let data = {
+        name : req.body.name,
+        stock : +req.body.stock,
+        harga : +req.body.harga,
+    }
+
+    console.log(data);
+
+    Menu.update(data,{
+        where : {id}
+    }) 
+        .then(data =>{
+            res.redirect('/menu')
+        })
+        .catch(err =>{
+          // res.send(err)
+            let errors = []
+            for ( let i = 0; i < err.errors.length; i++){
+                errors.push(err.errors[i].message)
+            }
+            res.redirect(`/error?errors=${errors}`)
+        })
+
+}
 }
 
 

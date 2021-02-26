@@ -1,0 +1,20 @@
+<html>
+    <html>
+    <%- include('./partials/header.ejs')%>
+    <h1>EDIT</h1>
+
+    <form action="/menu/edit/<%= data.id %> " method="post">
+
+        <h2>Name :</h2>
+        <input type="text" name="name" value="<%= data.name %>">
+        <h2>Stock :</h2>
+        <input type="text" name="stock" value="<%= data.stock %>">
+        <h2>Harga</h2>
+        <input type="text" name="harga" value="<%= data.harga %>">
+
+        <br><br>
+        <button type="submit">Save</button>
+        <button><a href="/menu">Cancel</a></button>  
+    </form>
+</html>
+</html>
